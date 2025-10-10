@@ -1,5 +1,6 @@
 package com.devsuperior.descommerce.entities;
 
+import com.devsuperior.descommerce.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,13 @@ public class Product {
 
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
+
+    public Product(ProductDto dto){
+        name = dto.getName();
+        description = dto.getDescription();
+        price = dto.getPrice();
+        imgUrl = dto.getImgUrl();
+    }
 
     public Long getId() {
         return id;
