@@ -79,7 +79,7 @@ public class ResourceServerConfig {
 	}
 
 	@Bean
-	FilterRegistrationBean<CorsFilter> corsFilter() {
+	FilterRegistrationBean<CorsFilter> filterFilterRegistrationBean() {
 		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(
 				new CorsFilter(corsConfigurationSource()));
 		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);

@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "tb_role")
 public class Role implements GrantedAuthority {
@@ -16,6 +14,14 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String authority;
+
+    public Role() {
+    }
+
+    public Role(Long id, String authority) {
+        this.id = id;
+        this.authority = authority;
+    }
 
     public Long getId() {
         return id;
