@@ -2,6 +2,7 @@ package com.devsuperior.descommerce.services;
 
 import java.util.List;
 
+import com.devsuperior.descommerce.dto.UserDto;
 import com.devsuperior.descommerce.entities.Role;
 import com.devsuperior.descommerce.entities.User;
 import com.devsuperior.descommerce.projections.UserDetailsProjection;
@@ -56,5 +57,11 @@ public class UserService implements UserDetailsService {
 			throw new UsernameNotFoundException("Invalid user");
 		}
 	}
+
+    @Transactional
+    public UserDto getMe(){
+        User user = authenticated();
+        return new UserDto(user);
+    }
 
 }
