@@ -1,6 +1,7 @@
 package com.devsuperior.descommerce.services;
 
 import com.devsuperior.descommerce.dto.ProductDto;
+import com.devsuperior.descommerce.dto.ProductMinDto;
 import com.devsuperior.descommerce.entities.Product;
 import com.devsuperior.descommerce.repositories.ProductRepository;
 import com.devsuperior.descommerce.services.exception.DataBaseException;
@@ -29,9 +30,10 @@ public class ProductService {
         return new ProductDto(repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Recurso não encontrado")));
     }
-
-    public Page<ProductDto> findAll(String name, Pageable pageable){
-            return repository.searchByName(name, pageable).map(ProductDto::new);
+    @Transactional(readOnly = true)
+    public Page<ProductMinDto> findAll(String name, Pageable pageable){
+        Page<Product> result = repository.searchByName(name, pageable);
+        return result.map(x -> new ProductMinDto(x));
     }
 
     @Transactional

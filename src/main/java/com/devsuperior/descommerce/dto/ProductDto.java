@@ -1,18 +1,13 @@
 package com.devsuperior.descommerce.dto;
 
 import com.devsuperior.descommerce.entities.Product;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Setter
 @ToString
 public class ProductDto {
 
@@ -34,5 +29,16 @@ public class ProductDto {
         description = product.getDescription();
         price = product.getPrice();
         imgUrl = product.getImgUrl();
+    }
+
+    public ProductDto() {
+    }
+
+    public ProductDto(Long id, String name, String description, Double price, String imgUrl) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.imgUrl = imgUrl;
     }
 }

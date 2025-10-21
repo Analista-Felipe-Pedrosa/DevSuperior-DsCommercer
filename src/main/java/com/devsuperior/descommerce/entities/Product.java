@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+@Getter
 @Setter
 @ToString
 @AllArgsConstructor
@@ -42,33 +43,7 @@ public class Product {
         imgUrl = dto.getImgUrl();
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public Set<OrderItem> getItems() {
-        return items;
-    }
 
     public List<Order> getOrders() {
         return items.stream().map(x -> x.getOrder()).toList();
