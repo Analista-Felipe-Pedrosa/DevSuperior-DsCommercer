@@ -1,7 +1,9 @@
 package com.devsuperior.descommerce.services;
 
+import com.devsuperior.descommerce.dto.CategoryDto;
 import com.devsuperior.descommerce.dto.ProductDto;
 import com.devsuperior.descommerce.dto.ProductMinDto;
+import com.devsuperior.descommerce.entities.Category;
 import com.devsuperior.descommerce.entities.Product;
 import com.devsuperior.descommerce.repositories.ProductRepository;
 import com.devsuperior.descommerce.services.exception.DataBaseException;
@@ -70,5 +72,12 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+        // Apagando as categorias antes de inserir novas
+        entity.getCategories().clear();
+        for (CategoryDto catDto : dto.getCategories()){
+            Category cat = new Category();
+            cat.setId(catDto.getId());
+            entity.getCategories().add(cat);
+        }
     }
 }

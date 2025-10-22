@@ -1,10 +1,15 @@
 package com.devsuperior.descommerce.dto;
 
+import com.devsuperior.descommerce.entities.Category;
 import com.devsuperior.descommerce.entities.Product;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,12 +28,18 @@ public class ProductDto {
     private Double price;
     private String imgUrl;
 
+    @NotEmpty(message = "Deve ter ao menos um categoria")
+    private List<CategoryDto> categories = new ArrayList<>();
+
     public ProductDto(Product product) {
         id = product.getId();
         name = product.getName();
         description = product.getDescription();
         price = product.getPrice();
         imgUrl = product.getImgUrl();
+        for (Category cat : product.getCategories()){
+            categories.add(new CategoryDto(cat));
+        }
     }
 
     public ProductDto() {
@@ -40,5 +51,6 @@ public class ProductDto {
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
+
     }
 }
