@@ -22,6 +22,9 @@ public class OrderItem {
         this.price = price;
     }
 
+    public OrderItem() {
+    }
+
     public void setOrder(Order order) {
         id.setOrder(order);
     }
