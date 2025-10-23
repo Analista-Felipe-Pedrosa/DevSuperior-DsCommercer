@@ -3,6 +3,7 @@ package com.devsuperior.descommerce.dto;
 import com.devsuperior.descommerce.entities.Order;
 import com.devsuperior.descommerce.entities.OrderItem;
 import com.devsuperior.descommerce.entities.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 import java.time.Instant;
@@ -17,7 +18,11 @@ public class OrderDto {
 
     private ClientDto client;
     private PaymentDto payment;
+    @NotEmpty(message = "Deve ter pelo menos um item")
     private List<OrderItemDto> items = new ArrayList<>();
+
+    public OrderDto() {
+    }
 
     public OrderDto(Order entity) {
         this.id = entity.getId();

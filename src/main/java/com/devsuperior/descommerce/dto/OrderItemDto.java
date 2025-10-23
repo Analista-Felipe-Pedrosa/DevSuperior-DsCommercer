@@ -17,6 +17,9 @@ public class OrderItemDto {
         this.quantity = entity.getQuantity();
     }
 
+    public OrderItemDto() {
+    }
+
     public Double getSubTotal(){
         return price * quantity;
     }

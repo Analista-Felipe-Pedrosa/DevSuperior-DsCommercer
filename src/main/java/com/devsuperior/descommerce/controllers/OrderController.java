@@ -26,4 +26,10 @@ public class OrderController {
         return ResponseEntity.ok(service.findById(id));
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PostMapping
+    public ResponseEntity<OrderDto> insert(@Valid @RequestBody OrderDto dto){
+        return ResponseEntity.status(201).body(service.insert(dto));
+    }
+
 }
