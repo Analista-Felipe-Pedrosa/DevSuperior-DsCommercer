@@ -2,10 +2,7 @@ package com.devsuperior.descommerce.dto;
 
 import com.devsuperior.descommerce.entities.Category;
 import com.devsuperior.descommerce.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -24,6 +21,7 @@ public class ProductDto {
     @NotBlank(message = "Campo requerido")
     @Size(min = 3, max = 400, message = "descrição precisa ter de  no mínimo 3 e máixmo 400 caracteres")
     private String description;
+    @NotNull(message = "Campo requerido")
     @Positive
     private Double price;
     private String imgUrl;
